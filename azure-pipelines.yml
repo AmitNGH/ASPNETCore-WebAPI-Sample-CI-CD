@@ -20,7 +20,7 @@ steps:
       Dockerfile: '**/Dockerfile'
     displayName: 'Docker Build and Push'
 
-  - checkout: self
+  - checkout: https://github.com/AmitNGH/ASPNETCore-WebAPI-Sample-CI-CD@main
 
   - script: |
       echo "Updating image tag in values.yaml"
