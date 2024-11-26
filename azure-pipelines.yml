@@ -21,16 +21,12 @@ steps:
       tags: $(imageTag)
     displayName: 'Docker Build and Push'
 
-  - task: AzureCLI@2
-    displayName: 'Azure CLI'
-    inputs:
-      scriptType: bash
-      scriptLocation: inlineScript
-      azureSubscription: 'github.com_AmitNGH'
-      inlineScript: |
-        git checkout main
-        sed -i 's|image: ".*"|image: "$(imageTag)"|g' ./sample-app/values.yaml
-        git add .
-        git status
-        git commit -m "Update Docker image tag to $(imageTag)"
-        git push origin main
+  - script: |
+      git fetch origin
+      git checkout -b main 
+      sed -i 's|image:\s*".*"$|image: "$(imageTag)"|g' ./sample-app/values.yaml
+      git status
+      git add .
+      git commit -m "Update Docker image tag to $(imageTag)"
+      git push origin main
+    displayName: 'Update and Commit values.yaml'
