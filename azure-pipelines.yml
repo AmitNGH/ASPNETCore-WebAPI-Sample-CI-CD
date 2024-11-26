@@ -21,10 +21,10 @@ steps:
       tags: $(imageTag)
     displayName: 'Docker Build and Push'
 
-  - checkout: self
-
   - script: |
       ls -l
+      ls -l ./sample-app
+      git checkout main
       sed -i 's|image: ".*"|image: "$(imageTag)"|g' ./sample-app/values.yaml
       git add ./sample-app/values.yaml
       git commit -m "Update Docker image tag to $(imageTag)"  # Commit changes
