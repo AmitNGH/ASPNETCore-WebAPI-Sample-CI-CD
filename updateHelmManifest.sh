@@ -6,7 +6,7 @@ git clone "https://$1@github.com/AmitNGH/ASPNETCore-WebAPI-Sample-CI-CD.git" /tm
 
 cd /tmp/temp_repo
 
-sed -i "s|image.tag: $2|g" sample-app/values.yaml
+sed -i "s|image\.tag: .*|image.tag: $2|g' sample-app/values.yaml"
 
 git add .
 
