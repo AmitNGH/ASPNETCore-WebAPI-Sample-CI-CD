@@ -21,8 +21,12 @@ steps:
       tags: $(imageTag)
     displayName: 'Docker Build and Push'
 
-  - task: HelmInstaller@1
+  - checkout: self
 
   - script: |
-      helm upgrade --install sample-app ./sample-app --set image.tag=$(imageTag)
-    displayName: 'Deploy to Minikube'
+      sed -i 's|image: ".*"|image: "$(imageTag)"|g' sample-app/values.yaml
+      git status  # Verify changes
+      git add sample-app/values.yaml  # Stage the changes
+      git commit -m "Update Docker image tag to $(imageTag)"  # Commit changes
+      git push https://$(GitHubToken)@github.com/$(GitHubOwner)/$(GitHubRepo).git HEAD:main
+    displayName: 'Update and Commit values.yaml'
