@@ -6,8 +6,10 @@ image:
   tag: ""
 
 service:
-  type: ClusterIP
+  type: LoadBalancer 
   port: 5000
+  targetPort: 5000
+  name: sample-app-lb
 
 resources:
   requests:
@@ -34,7 +36,30 @@ autoscaling:
   enabled: false
   minReplicas: 2
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 70
+  targetCPUUtilizationPercentage: 75
 
 serviceAccount:
   create: false
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext: {}
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: ""
+      paths:
+        - path: "/"
+          pathType: Prefix
+  tls: []
+volumes: []
+volumeMounts: []
+nodeSelector: {}
+tolerations: []
+affinity: {}
