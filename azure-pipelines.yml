@@ -9,7 +9,7 @@ pool:
 
 variables:
   imageName: 'amitnd/sample-app'
-  tag: '$(Build.BuildId)'
+  imageTag: '$(Build.BuildId)'
 
 steps:
   - task: Docker@2
@@ -18,15 +18,11 @@ steps:
       repository: $(imageName)
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
+      tags: $(imageTag)
     displayName: 'Docker Build and Push'
 
-  - checkout: self
+  - task: HelmInstaller@1
 
   - script: |
-      git fetch origin
-      git checkout main
-      sed -i 's/image.tag: .*/image.tag: "$(tag)"/' sample-app/values.yaml 
-      git add sample-app/values.yaml
-      git commit -m "Update Docker image tag to $(tag)"
-      git push origin main
-    displayName: 'Update Git repository with new image tag'
+      helm upgrade --install sample-app ./sample-app --set image.tag=$(imageTag)
+    displayName: 'Deploy to Minikube'
