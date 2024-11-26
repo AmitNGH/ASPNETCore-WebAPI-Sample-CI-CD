@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'amitnd/sample-app:$(Build.BuildId)'
+
+steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: $(imageName)
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
