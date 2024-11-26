@@ -8,7 +8,7 @@ pool:
   name: GuidelineAWS
 
 variables:
-  imageName: 'amitnd/sample-app:$(Build.BuildId)'
+  imageName: 'amitnd/sample-app'
 
 steps:
   - task: Docker@2
