@@ -26,7 +26,5 @@ steps:
   - task: ShellScript@2
     inputs:
       scriptPath: 'updateHelmManifest.sh'
-      args: '$(imageTag)'
+      args: '$(GITHUB_TOKEN) $(imageTag)'
     displayName: 'Update Helm values.yaml'
-    env:
-      GITHUB_TOKEN: $GITHUB_TOKEN
