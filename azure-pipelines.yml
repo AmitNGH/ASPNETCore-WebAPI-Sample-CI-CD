@@ -22,10 +22,8 @@ steps:
     displayName: 'Docker Build and Push'
 
   - script: |
+      git fetch origin
       git checkout main 
-    displayName: 'Checkout main branch'
-
-  - script: |
       ls -l
       ls -l ./sample-app
       git checkout main
