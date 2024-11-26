@@ -2,9 +2,9 @@
 
 set -x
 
-GITHUB_TOKEN=$1
+git config --global credential.helper cache
 
-git clone "https://$GITHUB_TOKEN@github.com/AmitNGH/ASPNETCore-WebAPI-Sample-CI-CD.git" /tmp/temp_repo
+git clone "https://$1@github.com/AmitNGH/ASPNETCore-WebAPI-Sample-CI-CD.git" /tmp/temp_repo
 
 cd /tmp/temp_repo
 
