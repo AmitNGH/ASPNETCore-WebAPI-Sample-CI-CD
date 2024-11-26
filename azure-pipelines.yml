@@ -21,12 +21,8 @@ steps:
       tags: $(imageTag)
     displayName: 'Docker Build and Push'
 
-  - script: |
-      git fetch origin
-      git checkout -b main 
-      sed -i 's|image:\s*".*"$|image: "$(imageTag)"|g' ./sample-app/values.yaml
-      git status
-      git add .
-      git commit -m "Update Docker image tag to $(imageTag)"
-      git push origin main
-    displayName: 'Update and Commit values.yaml'
+  - task: ShellScript@2
+    inputs:
+      scriptPath: 'updateHelmManifest.sh'
+      args: '$(githubtoken) $(imageTag)'
+    displayName: 'Update Helm values.yaml'
