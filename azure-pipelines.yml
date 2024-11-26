@@ -7,6 +7,8 @@ pool:
   vmImage: 'ubuntu-latest'
   name: GuidelineAWS
 
+
+
 variables:
   imageName: 'amitnd/sample-app'
   imageTag: '$(Build.BuildId)'
@@ -24,5 +26,7 @@ steps:
   - task: ShellScript@2
     inputs:
       scriptPath: 'updateHelmManifest.sh'
-      args: '$githubtoken $(imageTag)'
+      args: '$(imageTag)'
     displayName: 'Update Helm values.yaml'
+    env:
+      GITHUB_TOKEN: $GITHUB_TOKEN
