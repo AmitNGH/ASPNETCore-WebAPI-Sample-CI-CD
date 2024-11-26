@@ -5,6 +5,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+  name: GuidelineAWS
 
 variables:
   imageName: 'amitnd/sample-app:$(Build.BuildId)'
