@@ -2,8 +2,6 @@
 
 set -x
 
-ls -l
-
 git clone "https://$1@github.com/AmitNGH/ASPNETCore-WebAPI-Sample-CI-CD.git" /tmp/temp_repo
 
 cd /tmp/temp_repo
