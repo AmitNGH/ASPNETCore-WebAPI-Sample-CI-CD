@@ -3,11 +3,7 @@ replicaCount: 2
 image:
   repository: amitnd/sample-app
   pullPolicy: IfNotPresent
-<<<<<<< HEAD
-  tag: 49
-=======
   tag: 53
->>>>>>> aafb7e33ce3144e3e90a812b95147ed7a4af577d
 
 service:
   type: LoadBalancer 
