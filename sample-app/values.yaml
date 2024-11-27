@@ -41,8 +41,9 @@ autoscaling:
 serviceAccount:
   create: false
 
-environment:
-  DOTNET_ENVIRONMENT: Development
+env:
+  - name: DOTNET_ENVIRONMENT
+    value: "Development"
 
 imagePullSecrets: []
 nameOverride: ""
