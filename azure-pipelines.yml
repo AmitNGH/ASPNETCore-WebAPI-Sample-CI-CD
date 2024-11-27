@@ -27,4 +27,4 @@ steps:
     inputs:
       scriptPath: 'updateHelmManifest.sh'
       args: '$(GITHUB_TOKEN) $(imageTag)'
-    displayName: 'Update Helm values.yaml'
+    displayName: 'Update Helm values.yaml [skip ci]'
