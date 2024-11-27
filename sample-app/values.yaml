@@ -3,7 +3,7 @@ replicaCount: 2
 image:
   repository: amitnd/sample-app
   pullPolicy: IfNotPresent
-  tag: 52
+  tag: 49
 
 service:
   type: LoadBalancer 
@@ -52,13 +52,23 @@ podAnnotations: {}
 podLabels: {}
 podSecurityContext: {}
 securityContext: {}
+# ingress:
+#   enabled: false
+#   className: ""
+#   annotations: {}
+#   hosts:
+#     - host: ""
+#       paths:
+#         - path: "/"
+#           pathType: Prefix
+#   tls: []
 ingress:
   enabled: true
   name: sample-app-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-  rules:
+  hosts:
     - host: localhost
       http:
         paths:
